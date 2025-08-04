@@ -8,7 +8,7 @@ namespace ApplicationCore.Service;
 public interface IExerciseService
 {
     Task InsertExercisesForUser(InsertExercisesForUserDto requestxercises);
-    Task<List<GetExercisesByUserModel>> GetExercisesByUserId(int userId);
+    Task<List<GetExercisesByUserModel>> GetExercisesByUserId(int userId, DateTime exerciseDate);
     Task UpdateExercisesStatusUserById(UpdateExercisesForUserDto requestxercises);
     Task<(double exerciseRate, string exerciseDate)> GetExerciseCompletionPercentageByUserId(int userId);
 }
@@ -56,12 +56,13 @@ public class ExerciseService : IExerciseService
     }
 
     /// <summary>
-    /// get list of exercises by user id.
+    /// get exercises by user id and exercise date.
     /// </summary>
     /// <param name="userId"></param>
+    /// <param name="exerciseDate"></param>
     /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public async Task<List<GetExercisesByUserModel>> GetExercisesByUserId(int userId)
+    /// <exception cref="ArgumentException"></exception>
+    public async Task<List<GetExercisesByUserModel>> GetExercisesByUserId(int userId, DateTime exerciseDate)
     {
         var userExists = await _dbContext.Users.AnyAsync(u => u.Id == userId);
 
@@ -71,7 +72,7 @@ public class ExerciseService : IExerciseService
         }
 
         return await _dbContext.Exercise
-            .Where(e => e.UserId == userId && e.DeletedAt != null)
+            .Where(e => e.UserId == userId && e.DeletedAt == null && e.ExerciseDate.Date == exerciseDate.Date)
             .AsNoTracking()
             .Select(e => new GetExercisesByUserModel
             {
@@ -81,7 +82,6 @@ public class ExerciseService : IExerciseService
                 Calories = e.Calories,
                 Description = e.Description,
                 ExerciseDate = e.ExerciseDate,
-                Status = e.IsCompleted ? "完了" : "未完了"
             })
             .OrderBy(e => e.Calories)
             .ToListAsync();

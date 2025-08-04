@@ -1,0 +1,108 @@
+﻿@model Web.Models.ChallengeViewModel
+@{
+    ViewBag.Title = "チャレンジ";
+}
+
+<div class="container-fluid mt-3">
+
+    <div class="row justify-content-center mx-auto section-changllen">
+        <div class="col-md-3">
+            <div class="dashboard-card">
+                <img src="~/images/icon/body-record.jpg" alt="自分のカラダの記録">
+                <div class="card-content">
+                    <h5>BODY RECORD</h5>
+                    <span class="badge-text">自分のカラダの記録</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-card">
+                <img src="~/images/icon/my-exercise.jpg" alt="自分の運動の記録">
+                <div class="card-content">
+                    <h5>MY EXERCISE</h5>
+                    <span class="badge-text">自分の運動の記録</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-card">
+                <img src="~/images/icon/my-diary.jpg" alt="自分の日記">
+                <div class="card-content">
+                    <h5>MY DIARY</h5>
+                    <span class="badge-text">自分の日記</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mx-auto section-changllen">
+        <div class="col text-center">
+            <h4>体重・体脂肪率グラフ</h4>
+            <canvas id="weightChart" height="100"></canvas>
+        </div>
+        <div class="col-3">
+            <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none;" />
+        </div>
+    </div>
+
+    <div class="row justify-content-center mx-auto section-changllen">
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <span class="title">MY<br />EXERCISE</span>
+                <span class="date">@Model.ExerciseDate</span>
+            </div>
+            <div class="exercise-list">
+                <div class="row">
+                    <div class="col-md-6">
+                        @for (int i = 0; i < Model.Exercises.Count; i += 2)
+                        {
+                            <div class="exercise-item">
+                                <div class="exercise-info">
+                                    <span class="bullet">•</span>
+                                    @Model.Exercises[i].Name
+                                    <div class="kcal">@Model.Exercises[i].Calories kcal</div>
+                                </div>
+                                <div class="exercise-time">@Model.Exercises[i].DurationMinutes min</div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        @for (int i = 1; i < Model.Exercises.Count; i += 2)
+                        {
+                            <div class="exercise-item">
+                                <div class="exercise-info">
+                                    <span class="bullet">•</span>
+                                    @Model.Exercises[i].Name
+                                    <div class="kcal">@Model.Exercises[i].Calories kcal</div>
+                                </div>
+                                <div class="exercise-time">@Model.Exercises[i].DurationMinutes min</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center mx-auto section-changllen">
+        @if (Model.Diaries.Any())
+        {
+            <div class="diary-component">
+                <span class="text-header-diary">MY DIARY</span>
+                <div class="row" id="diaries-container">
+                    @Html.Partial("_PartialDiary", @Model.Diaries)
+                </div>
+
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <button id="load-more-btn" data-page="1" class="btn btn-load-more">
+                        <span class="text-add-meal">記録をもっと見る</span>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>  

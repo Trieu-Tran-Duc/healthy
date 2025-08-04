@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewData["Title"] = "Home Page";
+﻿@{
+    ViewData["Title"] = "自分の記録";
 }
 @model HomePageViewModel
 @{
@@ -11,7 +10,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <!--Date and achievement rate-->
+
         <div class="col-md-5 section section-date-archievement" style="background-image: url('@Url.Content("~/images/home/sakura.jpg")')">
             <div class="circle-progress">
                 <svg width="150" height="150">
@@ -28,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <!--Weight/Body Fat Percentage Graph-->
+
         <div class="col-md-7 section section-weight-body-graph">
             <div class="chart-container">
                 <canvas id="body-weight-chart"></canvas>
@@ -36,7 +35,6 @@
         </div>
     </div>
 
-    <!--Button to transition to input-->
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4 section section-transition">
@@ -57,7 +55,7 @@
                             <img src="~/images/icon/dinner.png" class="icon-transition" />
                         </a>
                     </li>
-                     <li class="nav-item d-flex align-items-center">
+                    <li class="nav-item d-flex align-items-center">
                         <a class="nav-link" asp-action="Privacy">
                             <img src="~/images/icon/snack.png" class="icon-transition" />
                         </a>
@@ -67,28 +65,30 @@
         </div>
         <div class="col-4"></div>
     </div>
-
-    <!--Meal history-->
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6 section section-meal-history">
-            <div class="row custom-row" id="meal-history-container">
-                @Html.Partial("_PartialFoodHistory", @Model.HistoryMeals)
+    
+    @if (Model.HistoryMeals.Any())
+    {
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 section section-meal-history">
+                <div class="row custom-row" id="meal-history-container">
+                    @Html.Partial("_PartialFoodHistory", @Model.HistoryMeals)
+                </div>
+            </div>
+            <div class="col-3">
+                <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none;" />
             </div>
         </div>
-        <div class="col-3">
-            <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none;" />
-        </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <button id="load-more-btn" data-page="1" class="btn btn-load-more">
-                <span class="text-add-meal">記録をもっと見る</span>
-            </button>
-        </div>
-    </div>
 
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <button id="load-more-btn" data-page="1" class="btn btn-load-more">
+                    <span class="text-add-meal">記録をもっと見る</span>
+                </button>
+            </div>
+        </div>
+    }
 
 </div>
 
