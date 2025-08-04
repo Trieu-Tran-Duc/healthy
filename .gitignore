@@ -1,0 +1,10 @@
+/.vs
+/Web/node_modules
+/Web/obj
+/Web/bin
+/Infrastructure/obj
+/Infrastructure/bin
+/ApplicationCore/obj
+/ApplicationCore/bin
+/Api/obj
+/Api/bin

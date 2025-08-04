@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model HomePageViewModel
+@{
+    double r = 70;
+    double circumference = 2 * Math.PI * r;
+    double offset = circumference - (circumference * Model.ExerciseRate / 100);
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <!--Date and achievement rate-->
+        <div class="col-md-5 section section-date-archievement" style="background-image: url('@Url.Content("~/images/home/sakura.jpg")')">
+            <div class="circle-progress">
+                <svg width="150" height="150">
+                    <circle class="bg-circle" cx="75" cy="75" r="@r" fill="transparent" />
+                    <circle class="progress-circle"
+                            cx="75" cy="75" r="@r"
+                            fill="transparent"
+                            stroke-dasharray="@circumference"
+                            stroke-dashoffset="@offset" />
+                </svg>
+                <div class="circle-text">
+                    <span class="date">@Model.ExerciseDate</span>
+                    <span class="percent">@Model.ExerciseRate%</span>
+                </div>
+            </div>
+        </div>
+        <!--Weight/Body Fat Percentage Graph-->
+        <div class="col-md-7 section section-weight-body-graph">
+            <div class="chart-container">
+                <canvas id="body-weight-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!--Button to transition to input-->
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 section section-transition">
+            <div class="d-flex justify-content-between w-100">
+                <ul class="navbar-nav d-flex flex-row w-100 justify-content-between p-0 m-0">
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link" asp-action="Privacy">
+                            <img src="~/images/icon/morning.png" class="icon-transition" />
+                        </a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link" asp-action="Privacy">
+                            <img src="~/images/icon/lunch.png" class="icon-transition" />
+                        </a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link" asp-action="Privacy">
+                            <img src="~/images/icon/dinner.png" class="icon-transition" />
+                        </a>
+                    </li>
+                     <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link" asp-action="Privacy">
+                            <img src="~/images/icon/snack.png" class="icon-transition" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+    <!--Meal history-->
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 section section-meal-history">
+            <div class="row custom-row" id="meal-history-container">
+                @Html.Partial("_PartialFoodHistory", @Model.HistoryMeals)
+            </div>
+        </div>
+        <div class="col-3">
+            <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none;" />
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <button id="load-more-btn" data-page="1" class="btn btn-load-more">
+                <span class="text-add-meal">記録をもっと見る</span>
+            </button>
+        </div>
+    </div>
+
+
+</div>
+
+<!--render chart-->
+@section Scripts {
+    <script src="~/js/home-page.js" asp-append-version="true"></script>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/chart/chart.min.js"></script>
+
+    <script>
+        window.chartDataUrl = '@Url.Action("GetChartData", "Home")';
+    </script>
+
+    <script src="~/js/chart-body-weight.js" asp-append-version="true"></script>
+}

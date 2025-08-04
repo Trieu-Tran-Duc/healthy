@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\food\morning\" />
+    <Folder Include="wwwroot\images\food\lunch\" />
+    <Folder Include="wwwroot\images\food\dinner\" />
+    <Folder Include="wwwroot\images\food\snack\" />
+    <Folder Include="wwwroot\images\home\" />
+    <Folder Include="wwwroot\lib\webfonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

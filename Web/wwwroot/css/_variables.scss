@@ -1,0 +1,21 @@
+﻿:root {
+    --c-light: #f0f0f0;
+    --c-primary-300: #FFCC21;
+    --c-primary-400: #FF963C;
+    --c-primary-500: #EA6C00;
+    --c-primary--300-400: #FFB12F;
+    --c-secondary-300: #8FE9D0;
+    --c-dark-600: #2E2E2E;
+    --c-dark-500: #414141;
+    --c-gray-400: #777777;
+}
+
+$c-light: var(--c-light);
+$c-primary-300: var(--c-primary-300);
+$c-primary-400: var(--c-primary-400);
+$c-primary-500: var(--c-primary-500);
+$c-primary--300-400: var(--c-primary--300-400);
+$c-secondary-300: var(--c-secondary-300);
+$c-dark-600: var(--c-dark-600);
+$c-dark-500: var(--c-dark-500);
+$c-gray-400: var(--c-gray-400);

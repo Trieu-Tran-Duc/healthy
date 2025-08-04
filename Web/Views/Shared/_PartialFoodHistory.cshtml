@@ -1,0 +1,13 @@
+﻿@model List<Infrastructure.Models.Web.FoodHistoryModel>
+
+@foreach (var entry in Model)
+{
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <img src="@entry.ImageUrl" class="card-img-top" />
+            <div class="card-label">
+                <span class="badge">@entry.MealDate.@entry.MealType</span>
+            </div>
+        </div>
+    </div>
+}

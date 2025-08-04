@@ -1,0 +1,327 @@
+:root {
+  --c-light: #f0f0f0;
+  --c-primary-300: #FFCC21;
+  --c-primary-400: #FF963C;
+  --c-primary-500: #EA6C00;
+  --c-primary--300-400: #FFB12F;
+  --c-secondary-300: #8FE9D0;
+  --c-dark-600: #2E2E2E;
+  --c-dark-500: #414141;
+  --c-gray-400: #777777;
+}
+
+@font-face {
+  font-family: "Noto Sans JP";
+  src: url("/lib/webfonts/NotoSansJP-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/lib/webfonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/lib/webfonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+html, body {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+  font-family: "Noto Sans JP", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  html, body {
+    font-size: 16px;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 64px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+  flex: 1;
+}
+
+.custom-header {
+  background-color: var(--c-dark-500);
+  padding: 0px 8px;
+  height: 64px;
+}
+.custom-header .navbar-brand {
+  margin-left: 160px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.custom-header .navbar-brand .healthy-logo {
+  width: 144px;
+  height: 64px;
+  object-fit: contain;
+}
+.custom-header .navbar-nav {
+  margin-left: 360px;
+  gap: 40px;
+}
+.custom-header .nav-link {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.custom-header .sub-logo {
+  height: 20px;
+}
+.custom-header .color-text-menu {
+  color: var(--c-light);
+}
+.custom-header .color-text-menu:hover {
+  color: var(--c-primary-400) !important;
+}
+.custom-header li {
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--c-gray-400);
+  color: white;
+  transition: right 0.3s ease-in-out;
+  z-index: 2000;
+}
+.sidebar.open {
+  right: 0;
+}
+.sidebar .sidebar-header {
+  font-size: 28px;
+  color: var(--c-primary-400);
+  cursor: pointer;
+}
+.sidebar .sidebar-menu li {
+  padding: 16px 20px;
+  border-top: 2px inset var(--c-light);
+  box-shadow: inset 0 -1px var(--c-gray-400);
+}
+.sidebar .sidebar-menu li a {
+  color: var(--c-light);
+  text-decoration: none;
+}
+.sidebar .sidebar-menu li a:hover {
+  color: var(--c-primary-400) !important;
+}
+.sidebar .sidebar-menu li:hover {
+  background-color: var(--c-gray-400);
+  display: block;
+}
+.sidebar .icon-close {
+  height: 20px;
+}
+
+.footer {
+  background-color: var(--c-dark-500);
+  padding: 24px 0;
+  text-align: center;
+  position: sticky;
+  z-index: 100;
+  bottom: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+.footer.hide-footer {
+  transform: translateY(100%);
+  opacity: 0;
+}
+.footer.scroll-mode {
+  position: static;
+}
+.footer .footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+.footer .footer-links li a {
+  color: var(--c-light);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+.footer .footer-links li a:hover {
+  color: var(--c-primary-400);
+}
+
+.btn-on-top {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  height: 240px;
+}
+
+.section-date-archievement {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.section-weight-body-graph {
+  background-color: var(--c-dark-600);
+}
+
+.section-transition {
+  padding: 0px;
+  height: 12.64%;
+}
+
+.section-meal-history {
+  height: 53.97%;
+}
+
+.circle-progress {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+.circle-progress svg {
+  transform: rotate(-90deg);
+}
+.circle-progress .progress-circle {
+  stroke: var(--c-light);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+  filter: drop-shadow(0 0 6px var(--c-primary-500)) drop-shadow(0 0 12px var(--c-primary-500));
+}
+.circle-progress .circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  transform: translate(-50%, -50%);
+  color: var(--c-light);
+  text-align: center;
+  text-shadow: 0 0 5px var(--c-primary-500), 0 0 10px var(--c-primary-500);
+}
+.circle-progress .circle-text .date {
+  font-size: 13px;
+  font-weight: 400;
+}
+.circle-progress .circle-text .percent {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.chart-container {
+  background-color: var(--c-dark-600);
+  height: 240px;
+  width: 760px;
+  max-width: 1000px;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+
+.icon-transition {
+  width: 96px;
+  height: 96px;
+}
+
+.btn-load-more {
+  width: 288px;
+  background-color: var(--c-primary--300-400);
+  color: var(--c-light);
+  margin: 16px 8px;
+}
+.btn-load-more:hover {
+  color: var(--c-primary-500) !important;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: Inter;
+}
+
+.card-label {
+  position: absolute;
+  background-color: var(--c-primary-300);
+  color: var(--c-light);
+  bottom: 0px;
+  padding: 2px 6px;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.custom-row {
+  --bs-gutter-x: 10px;
+  --bs-gutter-y: 10px;
+}
+
+/*# sourceMappingURL=main.css.map */

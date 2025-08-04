@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Healthy</title>
+   
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+    <link rel="icon" type="image/png" href="~/images/icon/logo.png" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body>
+    <header>
+        <nav class="navbar nav custom-header">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="@Url.Content("~/images/icon/logo.png")" alt="Logo" class="helthy-logo" />
+                </a>
+                <div class="justify-content-center">
+                    <ul class="navbar-nav d-flex flex-row gap-4">
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link" asp-action="Index">
+                                <img src="~/images/icon/icon_memo.png" class="sub-logo" />
+                                <span class="color-text-menu">自分の記録</span>
+                            </a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link" asp-action="Privacy">
+                                <img src="~/images/icon/icon_challenge.png" class="sub-logo" />
+                                <span class="color-text-menu">チャレンジ</span>
+                            </a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link" asp-action="Privacy">
+                                <img src="~/images/icon/icon_info.png" class="sub-logo" />
+                                <span class="color-text-menu">お知らせ</span>
+                            </a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link" id="menu-toggle">
+                                <img src="~/images/icon/icon_menu.png" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header d-flex justify-content-end p-3">
+            <a id="close-sidebar">
+                <img src="~/images/icon/icon_close.png" class="icon-close" />
+            </a>
+        </div>
+        <ul class="sidebar-menu list-unstyled m-0">
+            <li><a href="#">自分の記録</a></li>
+            <li><a href="#">体重グラフ</a></li>
+            <li><a href="#">目標</a></li>
+            <li><a href="#">選択中のコース</a></li>
+            <li><a href="#">コラム一覧</a></li>
+            <li><a href="#">設定</a></li>
+        </ul>
+    </div>
+
+    <main class="main-content">
+        @RenderBody()
+    </main>
+    
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="#">会員登録</a></li>
+            <li><a href="#">運営会社</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">個人情報の取扱について</a></li>
+            <li><a href="#">特定商取引法に基づく表記</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+        </ul>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,97 @@
+﻿.section {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    height: 240px;
+}
+
+.section-date-archievement {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.section-weight-body-graph {
+    background-color: $c-dark-600;
+}
+
+.section-transition {
+    padding: 0px;
+    height: 12.64%;
+}
+
+.section-meal-history {
+    height: 53.97%;
+}
+
+.circle-progress {
+    position: relative;
+    width: 150px;
+    height: 150px;
+
+    svg {
+        transform: rotate(-90deg);
+    }
+
+    .progress-circle {
+        stroke: $c-light;
+        stroke-width: 3;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.5s ease;
+        filter: drop-shadow(0 0 6px $c-primary-500) drop-shadow(0 0 12px $c-primary-500);
+    }
+
+    .circle-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300px;
+        transform: translate(-50%, -50%);
+        color: $c-light;
+        text-align: center;
+        text-shadow: 0 0 5px $c-primary-500, 0 0 10px $c-primary-500;
+
+        .date {
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .percent {
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+}
+
+.chart-container {
+    background-color: $c-dark-600;
+    height: 240px;
+    width: 760px;
+    max-width: 1000px;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+
+.icon-transition{
+    width: 96px;
+    height: 96px;
+}
+
+.btn-load-more {
+    width: 288px;
+    background-color: $c-primary--300-400;
+    color: $c-light;
+    margin: 16px 8px;
+
+    &:hover {
+        color: $c-primary-500 !important;
+    }
+}
