@@ -13,7 +13,7 @@ public class HomeController : Controller
     private readonly IExerciseService _exerciseService;
     private readonly IMealService _mealService;
 
-    private const int PAGE_SIZE = 4;
+    private const int PAGE_SIZE = 8;
 
     public HomeController
     (
