@@ -1,0 +1,107 @@
+﻿.category-menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 960px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-family: 'Noto Sans JP';
+    font-size: 22px;
+    font-weight: 400;
+
+    .category-box {
+        background-color: $c-dark-600;
+        color: $c-primary-300;
+        padding: 20px 10px;
+        font-weight: bold;
+        font-size: 18px;
+        border-bottom: 3px solid $c-dark-600;
+        cursor: pointer;
+        height: 144px;
+        width: 216px;
+        transition: background-color 0.3s;
+
+        span {
+            display: block;
+            color: $c-white;
+            font-size: 16px;
+            font-weight: normal;
+            margin-top: 5px;
+        }
+    }
+
+    .custom-hr {
+        width: 56px;
+        border: 1px;
+        height: 1.5px;
+        background-color: $c-white;
+        margin: 8px auto;
+    }
+}
+
+.article-grid {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-top: 25px;
+
+    .article-box {
+        overflow: hidden;
+        position: relative;
+        height: 222px;
+
+        .card-image {
+            position: relative;
+            width: 100%;
+            height: 144px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .card-label {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 144px;
+                background-color: $c-primary-300;
+                color: $c-white;
+                font-size: 14px;
+                padding: 4px 10px;
+                text-align: left;
+            }
+        }
+
+        .title {
+            padding: 8px 10px 0;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .tags {
+            padding: 5px 10px 10px;
+            font-size: 13px;
+            color: $c-primary-400;
+
+            span {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .col-md-3 {
+        padding: 5px;
+    }
+}

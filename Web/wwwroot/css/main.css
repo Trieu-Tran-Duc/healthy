@@ -8,6 +8,7 @@
   --c-dark-600: #2E2E2E;
   --c-dark-500: #414141;
   --c-gray-400: #777777;
+  --c-white: #FFFFFF;
 }
 
 @font-face {
@@ -32,9 +33,10 @@ html, body {
   font-size: 14px;
   position: relative;
   min-height: 100%;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Noto Sans JP", "Inter", sans-serif;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
 }
 @media (min-width: 768px) {
   html, body {
@@ -184,6 +186,7 @@ header {
   height: 38px;
   border: none;
   font-size: 24px;
+  right: calc((100% - 960px) / 2 - 70px);
   cursor: pointer;
   z-index: 1000;
   transition: opacity 0.3s ease;
@@ -221,6 +224,12 @@ header {
 
 .section-meal-history {
   height: 53.97%;
+  width: 960px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top: 15px;
 }
 
 .circle-progress {
@@ -282,6 +291,12 @@ header {
   color: var(--c-primary-500) !important;
 }
 
+.btn-filter-food {
+  border: none;
+  background-color: var(--c-white);
+  margin-top: 15px;
+}
+
 .card {
   height: 100%;
   display: flex;
@@ -327,10 +342,18 @@ header {
 
 .section-changllen {
   max-width: calc(100% - 160px);
-  padding-top: 20px;
 }
 
-.dashboard-card {
+.section-dashboard {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.section-dashboard .dashboard-card {
   position: relative;
   background-color: var(--c-primary-300);
   padding: 24px;
@@ -339,12 +362,12 @@ header {
   height: 288px;
   width: 288px;
 }
-.dashboard-card img {
+.section-dashboard .dashboard-card img {
   width: 240px;
   height: 240px;
   filter: grayscale(100%) brightness(0.7);
 }
-.dashboard-card .card-content {
+.section-dashboard .dashboard-card .card-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -352,11 +375,11 @@ header {
   color: var(--c-primary-300);
   text-align: center;
 }
-.dashboard-card .card-content h5 {
+.section-dashboard .dashboard-card .card-content h5 {
   font-weight: bold;
   margin-bottom: 10px;
 }
-.dashboard-card .card-content .badge-text {
+.section-dashboard .dashboard-card .card-content .badge-text {
   background-color: var(--c-primary-400);
   color: var(--c-light);
   padding: 5px 10px;
@@ -365,15 +388,21 @@ header {
   width: max-content;
 }
 
+#exerciseSection,
+#chartSection,
+#diarySection {
+  scroll-margin-top: 100px;
+}
+
 .exercise-card {
   background-color: var(--c-dark-500);
   padding: 15px;
-  border-radius: 5px;
   width: 960px;
   height: 264px;
   color: var(--c-light);
   font-weight: 400;
   font-family: "Inter";
+  margin-top: 30px;
 }
 .exercise-card .exercise-header {
   display: flex;
@@ -441,13 +470,56 @@ header {
   font-size: 14px;
   color: var(--c-primary-300);
   font-weight: 400;
-  font-family: "Inter";
+  font-family: Inter;
+}
+
+.section-chart {
+  width: 960px;
+  height: 304px;
+  background-color: var(--c-dark-500);
+  margin-top: 30px;
+  color: var(--c-light);
+}
+.section-chart .chart-header {
+  display: flex;
+  font-weight: bold;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  font-weight: 400;
+  font-family: Inter;
+  font-size: 15px;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+.section-chart .chart-header .title {
+  font-size: 14px;
+  line-height: 1.2;
+  white-space: pre-line;
+  padding-right: 30px;
+}
+.section-chart .chart-header .date {
+  font-size: 14px;
+  align-self: center;
+}
+.section-chart .btn-filter-chart {
+  width: 56px;
+  height: 24px;
+  border-radius: 11px;
+  color: var(--c-primary-300);
+  background-color: var(--c-light);
+  font-size: 15px;
+  padding: 0;
+}
+.section-chart .btn-filter-chart:hover {
+  color: var(--c-light);
+  background-color: var(--c-primary-300);
 }
 
 .diary-component {
   width: 960px;
   padding: 0px;
   font-family: "Inter";
+  margin-top: 40px;
 }
 .diary-component .text-header-diary {
   font-weight: 400;
@@ -493,8 +565,101 @@ header {
   -webkit-box-orient: vertical;
 }
 
-.btn-on-top {
-  right: 200px;
+.category-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-family: "Noto Sans JP";
+  font-size: 22px;
+  font-weight: 400;
+}
+.category-menu .category-box {
+  background-color: var(--c-dark-600);
+  color: var(--c-primary-300);
+  padding: 20px 10px;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 3px solid var(--c-dark-600);
+  cursor: pointer;
+  height: 144px;
+  width: 216px;
+  transition: background-color 0.3s;
+}
+.category-menu .category-box span {
+  display: block;
+  color: var(--c-white);
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+.category-menu .custom-hr {
+  width: 56px;
+  border: 1px;
+  height: 1.5px;
+  background-color: var(--c-white);
+  margin: 8px auto;
+}
+
+.article-grid {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: 25px;
+}
+.article-grid .article-box {
+  overflow: hidden;
+  position: relative;
+  height: 222px;
+}
+.article-grid .article-box .card-image {
+  position: relative;
+  width: 100%;
+  height: 144px;
+  overflow: hidden;
+}
+.article-grid .article-box .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.article-grid .article-box .card-image .card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 144px;
+  background-color: var(--c-primary-300);
+  color: var(--c-white);
+  font-size: 14px;
+  padding: 4px 10px;
+  text-align: left;
+}
+.article-grid .article-box .title {
+  padding: 8px 10px 0;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.article-grid .article-box .tags {
+  padding: 5px 10px 10px;
+  font-size: 13px;
+  color: var(--c-primary-400);
+}
+.article-grid .article-box .tags span {
+  margin-right: 5px;
+}
+.article-grid .col-md-3 {
+  padding: 5px;
 }
 
 /*# sourceMappingURL=main.css.map */

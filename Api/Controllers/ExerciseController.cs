@@ -49,7 +49,7 @@ public class ExerciseController : ControllerBase
     {
         try
         {
-            var exercises =  await _exerciseService.GetExercisesByUserId(userId);
+            var exercises =  await _exerciseService.GetExercisesByUserId(userId, DateTime.Now);
            
             return Ok(new ApiResponse<List<GetExercisesByUserModel>>(
                   status: 200, 

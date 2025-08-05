@@ -2,21 +2,38 @@
 
     $(document).on('click', '#load-more-btn', function () {
         var button = $(this);
-        var page = parseInt(button.data('page')) + 1;
+        var pageIndex = parseInt(button.data('page')) + 1;
+        var mealType = parseInt(button.data('type'));
 
+        loadDataMeal(button, mealType, pageIndex)
+    });
+
+    $('.btn-filter-food').on('click',function () {
+        var button = $(this);
+        var buttonLoadMore = $('#load-more-btn');
+        buttonLoadMore.show();
+
+        var mealType = parseInt(button.data('type'));
+        $('#meal-history-container').html('')
+        
+        loadDataMeal(buttonLoadMore, mealType, 1)
+    })
+
+    function loadDataMeal(buttonLoadMore, mealType, pageIndex) {
         $.ajax({
             url: '/Home/LoadMoreMealHistory',
             type: 'GET',
-            data: { pageIndex: page },
+            data: { pageIndex: pageIndex, mealType: mealType },
             success: function (result) {
                 if (result.trim() !== '') {
                     $('#meal-history-container').append(result);
-                    button.data('page', page);
+                    buttonLoadMore.data('type', mealType);
+                    buttonLoadMore.data('page', pageIndex);
                 } else {
-                    button.hide();
+                    buttonLoadMore.hide();
                 }
             }
         });
-    });
+    }
 
 });

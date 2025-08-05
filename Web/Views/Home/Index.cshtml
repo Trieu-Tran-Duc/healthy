@@ -41,49 +41,44 @@
             <div class="d-flex justify-content-between w-100">
                 <ul class="navbar-nav d-flex flex-row w-100 justify-content-between p-0 m-0">
                     <li class="nav-item d-flex align-items-center">
-                        <a class="nav-link" asp-action="Privacy">
+                        <button data-type="0" class="btn-filter-food">
                             <img src="~/images/icon/morning.png" class="icon-transition" />
-                        </a>
+                        </button>
                     </li>
                     <li class="nav-item d-flex align-items-center">
-                        <a class="nav-link" asp-action="Privacy">
+                        <button data-type="1" class="btn-filter-food">
                             <img src="~/images/icon/lunch.png" class="icon-transition" />
-                        </a>
+                        </button>
                     </li>
                     <li class="nav-item d-flex align-items-center">
-                        <a class="nav-link" asp-action="Privacy">
+                        <button data-type="2" class="btn-filter-food">
                             <img src="~/images/icon/dinner.png" class="icon-transition" />
-                        </a>
+                        </button>
                     </li>
                     <li class="nav-item d-flex align-items-center">
-                        <a class="nav-link" asp-action="Privacy">
+                        <button data-type="3" class="btn-filter-food">
                             <img src="~/images/icon/snack.png" class="icon-transition" />
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="col-4"></div>
     </div>
-    
+    <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none"/>
     @if (Model.HistoryMeals.Any())
     {
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6 section section-meal-history">
+            <div class="section section-meal-history">
                 <div class="row custom-row" id="meal-history-container">
                     @Html.Partial("_PartialFoodHistory", @Model.HistoryMeals)
                 </div>
             </div>
-            <div class="col-3">
-                <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none;" />
-            </div>
         </div>
-
 
         <div class="row justify-content-center">
             <div class="col-auto">
-                <button id="load-more-btn" data-page="1" class="btn btn-load-more">
+                <button id="load-more-btn" data-page="1" data-type="" class="btn btn-load-more">
                     <span class="text-add-meal">記録をもっと見る</span>
                 </button>
             </div>

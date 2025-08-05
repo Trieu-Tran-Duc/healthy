@@ -1,57 +1,71 @@
 ﻿.section-changllen {
     max-width: calc(100% - 160px);
-    padding-top: 20px;
 }
 
-.dashboard-card {
-    position: relative;
-    background-color: $c-primary-300;
-    padding: 24px;
-    text-align: center;
-    cursor: pointer;
-    height: 288px;
-    width: 288px;
+.section-dashboard {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+    margin-top: 30px;
 
-    img {
-        width: 240px;
-        height: 240px;
-        filter: grayscale(100%) brightness(0.7);
-    }
-
-    .card-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: $c-primary-300;
+    .dashboard-card {
+        position: relative;
+        background-color: $c-primary-300;
+        padding: 24px;
         text-align: center;
+        cursor: pointer;
+        height: 288px;
+        width: 288px;
 
-        h5 {
-            font-weight: bold;
-            margin-bottom: 10px;
+        img {
+            width: 240px;
+            height: 240px;
+            filter: grayscale(100%) brightness(0.7);
         }
 
-        .badge-text {
-            background-color: $c-primary-400;
-            color: $c-light;
-            padding: 5px 10px;
-            font-size: 0.9rem;
-            display: inline-block;
-            width: max-content;
+        .card-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: $c-primary-300;
+            text-align: center;
+
+            h5 {
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .badge-text {
+                background-color: $c-primary-400;
+                color: $c-light;
+                padding: 5px 10px;
+                font-size: 0.9rem;
+                display: inline-block;
+                width: max-content;
+            }
         }
     }
 }
 
+#exerciseSection,
+#chartSection,
+#diarySection {
+    scroll-margin-top: 100px
+}
 
 .exercise-card {
     background-color: $c-dark-500;
     padding: 15px;
-    border-radius: 5px;
     width: 960px;
     height: 264px;
     color: $c-light;
     font-weight: 400;
     font-family: 'Inter';
+    margin-top: 30px;
 
     .exercise-header {
         display: flex;
@@ -130,8 +144,55 @@
                 font-size: 14px;
                 color: $c-primary-300;
                 font-weight: 400;
-                font-family: 'Inter'
+                font-family: Inter
             }
+        }
+    }
+}
+
+.section-chart {
+    width: 960px;
+    height: 304px;
+    background-color: $c-dark-500;
+    margin-top: 30px;
+    color: $c-light;
+
+    .chart-header {
+        display: flex;
+        font-weight: bold;
+        margin-bottom: 10px;
+        align-items: flex-start;
+        font-weight: 400;
+        font-family: Inter;
+        font-size: 15px;
+        padding-top: 15px;
+        padding-left: 15px;
+
+        .title {
+            font-size: 14px;
+            line-height: 1.2;
+            white-space: pre-line;
+            padding-right: 30px;
+        }
+
+        .date {
+            font-size: 14px;
+            align-self: center;
+        }
+    }
+
+    .btn-filter-chart {
+        width: 56px;
+        height: 24px;
+        border-radius: 11px;
+        color: $c-primary-300;
+        background-color: $c-light;
+        font-size: 15px;
+        padding: 0;
+
+        &:hover {
+            color: $c-light;
+            background-color: $c-primary-300;
         }
     }
 }
@@ -140,6 +201,7 @@
     width: 960px;
     padding: 0px;
     font-family: 'Inter';
+    margin-top: 40px;
 
     .text-header-diary {
         font-weight: 400;
@@ -191,7 +253,3 @@
         }
     }
 }
-
-    .btn-on-top {
-        right: 200px;
-    }

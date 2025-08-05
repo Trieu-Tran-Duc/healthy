@@ -2,9 +2,10 @@
     font-size: 14px;
     position: relative;
     min-height: 100%;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Noto Sans JP', 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
+    scroll-behavior: smooth;
 
     @media (min-width: 768px) {
         font-size: 16px;
@@ -177,6 +178,7 @@ header {
     height: 38px;
     border: none;
     font-size: 24px;
+    right: calc((100% - 960px) / 2 - 70px);
     cursor: pointer;
     z-index: 1000;
     transition: opacity 0.3s ease;

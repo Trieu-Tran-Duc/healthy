@@ -30,6 +30,12 @@
 
 .section-meal-history {
     height: 53.97%;
+    width: 960px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 960px;
+    margin: 0 auto;
+    margin-top: 15px;
 }
 
 .circle-progress {
@@ -95,4 +101,10 @@
     &:hover {
         color: $c-primary-500 !important;
     }
+}
+
+.btn-filter-food {
+    border: none;
+    background-color: $c-white;
+    margin-top: 15px;
 }

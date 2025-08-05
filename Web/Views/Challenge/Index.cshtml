@@ -5,47 +5,56 @@
 
 <div class="container-fluid mt-3">
 
-    <div class="row justify-content-center mx-auto section-changllen">
-        <div class="col-md-3">
-            <div class="dashboard-card">
+    <div class="row mx-auto section-changllen section-dashboard">
+        <div class="dashboard-card">
+            <a href="#chartSection" class="text-decoration-none">
                 <img src="~/images/icon/body-record.jpg" alt="自分のカラダの記録">
                 <div class="card-content">
                     <h5>BODY RECORD</h5>
                     <span class="badge-text">自分のカラダの記録</span>
                 </div>
-            </div>
+            </a>
         </div>
-        <div class="col-md-3">
-            <div class="dashboard-card">
+        <div class="dashboard-card">
+            <a href="#exerciseSection" class="text-decoration-none">
                 <img src="~/images/icon/my-exercise.jpg" alt="自分の運動の記録">
                 <div class="card-content">
                     <h5>MY EXERCISE</h5>
                     <span class="badge-text">自分の運動の記録</span>
                 </div>
-            </div>
+            </a>
         </div>
-        <div class="col-md-3">
-            <div class="dashboard-card">
+        <div class="dashboard-card">
+            <a href="#diarySection" class="text-decoration-none">
                 <img src="~/images/icon/my-diary.jpg" alt="自分の日記">
                 <div class="card-content">
                     <h5>MY DIARY</h5>
                     <span class="badge-text">自分の日記</span>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 
-    <div class="row justify-content-center mx-auto section-changllen">
+    <div id="chartSection" class="row justify-content-center mx-auto section-changllen section-chart">
+        <div class="chart-header">
+            <span class="title">BODY<br />RECORD</span>
+            <span class="date">@Model.ExerciseDate</span>
+        </div>
         <div class="col text-center">
-            <h4>体重・体脂肪率グラフ</h4>
-            <canvas id="weightChart" height="100"></canvas>
+            <canvas id="body-weight-chart" height="100"></canvas>
+        </div>
+        <div class="filter-buttons mb-3 d-flex gap-3">
+            <button class="btn btn-filter-chart">日</button>
+            <button class="btn btn-filter-chart">週</button>
+            <button class="btn btn-filter-chart">月</button>
+            <button class="btn btn-filter-chart">年</button>
         </div>
         <div class="col-3">
             <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none;" />
         </div>
     </div>
 
-    <div class="row justify-content-center mx-auto section-changllen">
+    <div id="exerciseSection" class="row justify-content-center mx-auto section-changllen">
         <div class="exercise-card">
             <div class="exercise-header">
                 <span class="title">MY<br />EXERCISE</span>
@@ -85,7 +94,7 @@
 
     </div>
 
-    <div class="row justify-content-center mx-auto section-changllen">
+    <div id="diarySection" class="row justify-content-center mx-auto section-changllen">
         @if (Model.Diaries.Any())
         {
             <div class="diary-component">
@@ -105,4 +114,18 @@
             </div>
         }
     </div>
-</div>  
+</div>
+
+<!--render chart-->
+@section Scripts {
+    <script src="~/js/challenge-page.js" asp-append-version="true"></script>
+    
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/chart/chart.min.js"></script>
+
+    <script>
+        window.chartDataUrl = '@Url.Action("GetChartData", "Home")';
+    </script>
+
+    <script src="~/js/chart-body-weight.js" asp-append-version="true"></script> 
+}

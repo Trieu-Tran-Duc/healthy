@@ -50,6 +50,7 @@ public class LoginController : Controller
         }
         catch (Exception e)
         {
+            _logger.LogError(e, "Login page error: ");
             return Json(new { success = false, message = "Something error !!!!" });
         }
 

@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Data;
 using Infrastructure.Entities;
 using Infrastructure.Models.Api;
+using Infrastructure.Models.Web;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApplicationCore.Service;
@@ -8,6 +9,7 @@ namespace ApplicationCore.Service;
 public interface IDiaryService
 {
     Task InsertDiaryForUser(InsertDiaryForUserDto diaryRequest);
+    Task<List<DiariesModel>> GetUserDiariesPaginated(int userId, int pageSize, int pageIndex);
 }
 
 /// <summary>
@@ -20,6 +22,29 @@ public class DiaryService : IDiaryService
     public DiaryService(HealtyDbContext dbContext)
     {
         _dbContext = dbContext;
+    }
+
+    /// <summary>
+    /// get all diary entries for a user by their user ID.
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public async Task<List<DiariesModel>> GetUserDiariesPaginated(int userId, int pageSize, int pageIndex)
+    {
+        return await _dbContext.Diaries
+            .Where(d => d.UserId == userId && d.DeletedAt == null)
+            .AsNoTracking()
+            .OrderByDescending(d => d.CreatedAt)
+            .Select(d => new DiariesModel
+            {
+                Title = d.Title,
+                Content = d.Content,
+                Date = d.CreatedAt.Value.ToString("MM/dd/yyyy"),
+                Time = d.CreatedAt.Value.ToString("HH:mm"),
+            })
+             .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
     }
 
     /// <summary>

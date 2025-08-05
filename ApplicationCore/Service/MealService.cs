@@ -8,7 +8,7 @@ namespace ApplicationCore.Service;
 
 public interface IMealService
 {
-    Task<List<FoodHistoryModel>> GetMealsByUserId(int userId, int pageSize, int pageIndex);
+    Task<List<FoodHistoryModel>> GetMealsByUserId(int userId, int pageSize, int pageIndex, MealType? mealType);
     Task GenerateMeals(string email);
 }
 
@@ -84,7 +84,7 @@ public class MealService : IMealService
     /// <param name="userId"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task<List<FoodHistoryModel>> GetMealsByUserId(int userId, int pageSize, int pageIndex)
+    public async Task<List<FoodHistoryModel>> GetMealsByUserId(int userId, int pageSize, int pageIndex, MealType? mealType)
     {
         var listMeal = await _dbContext.Meal
             .Join(
@@ -93,7 +93,10 @@ public class MealService : IMealService
                 food => food.Id,
                 (meal, food) => new { meal, food }
             )
-            .Where(m => m.meal.UserId == userId && m.meal.DeletedAt == null)
+            .Where(m => m.meal.UserId == userId 
+                     && m.meal.DeletedAt == null
+                     && (mealType == null || m.meal.MealType == mealType)
+             )
             .AsNoTracking()
             .Select(s => new FoodHistoryModel
             {
