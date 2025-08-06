@@ -12,6 +12,7 @@
     <Folder Include="wwwroot\images\food\dinner\" />
     <Folder Include="wwwroot\images\food\snack\" />
     <Folder Include="wwwroot\images\home\" />
+    <Folder Include="wwwroot\images\recommend\" />
     <Folder Include="wwwroot\lib\webfonts\" />
   </ItemGroup>
 

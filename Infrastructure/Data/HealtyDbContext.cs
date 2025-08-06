@@ -18,6 +18,7 @@ public class HealtyDbContext : DbContext
     public DbSet<Food> Food { get; set; }
     public DbSet<Meal> Meal { get; set; }
     public DbSet<BodyRecords> BodyRecord { get; set; }
+    public DbSet<Recommend> Recommends { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -159,6 +160,28 @@ public class HealtyDbContext : DbContext
             .HasOne(w => w.User)
             .WithMany(u => u.BodyRecords)
             .HasForeignKey(w => w.UserId);
+
+        /// Table : Recommend
+        modelBuilder.Entity<Recommend>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.ImageUrl)
+                  .IsRequired();
+
+            entity.Property(e => e.Content)
+                  .HasMaxLength(1000);
+
+            entity.Property(e => e.HashTags)
+                  .HasMaxLength(2000);
+
+            entity.Property(e => e.CreatedAt);
+            entity.Property(e => e.CreatedUserId);
+            entity.Property(e => e.UpdatedAt);
+            entity.Property(e => e.UpdatedUserId);
+            entity.Property(e => e.DeletedAt);
+            entity.Property(e => e.DeletedUserId);
+        });
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken  = default)

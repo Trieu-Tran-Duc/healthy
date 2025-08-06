@@ -13,7 +13,8 @@ public static class AddDependencyInjectionServices
         services.AddScoped<IBodyRecordsService, BodyRecordsService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IMealService, MealService>();
-        services.AddScoped<IFoodService, FoodService>();
+        services.AddScoped<IRecommendService, RecommendService>();
+        services.AddScoped<ITemporaryDataService, TemporaryDataService>();
 
         services.AddScoped<IAccessSessionHelper, AccessSessionHelper>();
         

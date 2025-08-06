@@ -19,11 +19,11 @@ namespace Api.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPost("generate")]
-        public async Task<IActionResult> GenerateMeals(string email)
+        public async Task<IActionResult> GenerateMeals(string email, DateTime dateTime)
         {
             try
             {
-                await _mealService.GenerateMeals(email);
+                await _mealService.GenerateMeals(email, dateTime);
                 return StatusCode(201, $"Meals for {email} generated successfully.");
             }
             catch (ArgumentException ex)

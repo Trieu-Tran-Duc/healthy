@@ -21,7 +21,7 @@
 
     function loadDataMeal(buttonLoadMore, mealType, pageIndex) {
         $.ajax({
-            url: '/Home/LoadMoreMealHistory',
+            url: '/home/load-more-meal-history',
             type: 'GET',
             data: { pageIndex: pageIndex, mealType: mealType },
             success: function (result) {

@@ -17,25 +17,25 @@
     <header>
         <nav class="navbar nav custom-header">
             <div class="d-flex align-items-center">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <a class="navbar-brand" asp-area="" asp-controller="home" asp-action="Index">
                     <img src="@Url.Content("~/images/icon/logo.png")" alt="Logo" class="helthy-logo" />
                 </a>
                 <div class="justify-content-center">
                     <ul class="navbar-nav d-flex flex-row gap-4">
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link" asp-controller="home" asp-action="Index">
                                 <img src="~/images/icon/icon_memo.png" class="sub-logo" />
                                 <span class="color-text-menu">自分の記録</span>
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link" asp-controller="Challenge" asp-action="Index">
+                            <a class="nav-link" asp-controller="challenge" asp-action="Index">
                                 <img src="~/images/icon/icon_challenge.png" class="sub-logo" />
                                 <span class="color-text-menu">チャレンジ</span>
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link" asp-controller="Notice" asp-action="Index">
+                            <a class="nav-link" asp-controller="recommend" asp-action="Index">
                                 <img src="~/images/icon/icon_info.png" class="sub-logo" />
                                 <span class="color-text-menu">お知らせ</span>
                             </a>
@@ -58,11 +58,11 @@
             </a>
         </div>
         <ul class="sidebar-menu list-unstyled m-0">
-            <li><a class="nav-link" asp-controller="Home" asp-action="Index">自分の記録</a></li>
+            <li><a class="nav-link" style="padding-left:0px" asp-controller="home" asp-action="Index">自分の記録</a></li>
             <li><a href="#">体重グラフ</a></li>
             <li><a href="#">目標</a></li>
             <li><a href="#">選択中のコース</a></li>
-            <li><a class="nav-link" asp-controller="Notice" asp-action="Index">コラム一覧</a></li>
+            <li><a class="nav-link" style="padding-left:0px" asp-controller="recommend" asp-action="Index">コラム一覧</a></li>
             <li><a href="#">設定</a></li>
         </ul>
     </div>

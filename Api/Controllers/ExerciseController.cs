@@ -20,12 +20,12 @@ public class ExerciseController : ControllerBase
     /// </summary>
     /// <param name="requestxercises"></param>
     /// <returns></returns>
-    [HttpPost("seed")]
-    public async Task<IActionResult> InsertExercisesForUser([FromBody] InsertExercisesForUserDto requestxercises)
+    [HttpPost("generate-daily-exercise-plans-for-user")]
+    public async Task<IActionResult> GenerateDailyExercisePlansForUsers([FromBody] InsertExercisesForUserDto requestxercises)
     {
         try
         {
-            await _exerciseService.InsertExercisesForUser(requestxercises);
+            await _exerciseService.InsertDailyExercisePlansForUsers(requestxercises);
 
             return Ok(new { Message = $"Default exercises inserted for user has mail address {requestxercises.MailAddress} successfully." });
         }

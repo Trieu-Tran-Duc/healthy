@@ -65,7 +65,9 @@
         </div>
         <div class="col-4"></div>
     </div>
+    
     <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none"/>
+    
     @if (Model.HistoryMeals.Any())
     {
         <div class="row">
@@ -95,7 +97,7 @@
     <script src="~/lib/chart/chart.min.js"></script>
 
     <script>
-        window.chartDataUrl = '@Url.Action("GetChartData", "Home")';
+        window.chartDataUrl = '@Url.Action("get-chart-data", "home")';
     </script>
 
     <script src="~/js/chart-body-weight.js" asp-append-version="true"></script>

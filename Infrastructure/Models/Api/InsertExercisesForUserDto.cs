@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Validators;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Infrastructure.Models.Api;
@@ -10,6 +11,23 @@ public class InsertExercisesForUserDto
     [MailAddressAttribute]
     public string MailAddress { get; set; } = string.Empty;
 
-    [JsonPropertyName("total-exercises")]
-    public int TotalExercises { get; set; }
+    [JsonPropertyName("exercise-date")]
+    [ApiDateFormatAttribute]
+    public DateTime ExerciseDate { get; set; }
+
+    [JsonPropertyName("exercise-name")]
+    [ApiRequired]
+    [ApiStringLength(255)]
+    public string Name { get; set; }
+
+    [JsonPropertyName("duration-minutes")]
+    [Required]
+    public int DurationMinutes { get; set; }
+
+    [JsonPropertyName("calories")]
+    public int? Calories { get; set; }
+
+    [JsonPropertyName("description")]
+    [StringLength(1000)]
+    public string? Description { get; set; }
 }

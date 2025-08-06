@@ -1,0 +1,42 @@
+﻿@model List<Infrastructure.Models.Web.RecommendModel>
+@{
+    ViewData["Title"] = "お知らせ";
+}
+<div class="container">
+    <div class="row text-center category-menu">
+        <div class="col-md-3">
+            <div class="category-box">RECOMMENDED<br>COLUMN<br><hr class="custom-hr" /><span>オススメ</span></div>
+        </div>
+        <div class="col-md-3">
+            <div class="category-box">RECOMMENDED<br>DIET<br><hr class="custom-hr" /><span>ダイエット</span></div>
+        </div>
+        <div class="col-md-3">
+            <div class="category-box">RECOMMENDED<br>BEAUTY<br><hr class="custom-hr" /><span>美容</span></div>
+        </div>
+        <div class="col-md-3">
+            <div class="category-box">RECOMMENDED<br>HEALTH<br><hr class="custom-hr" /><span>健康</span></div>
+        </div>
+    </div>
+
+    <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none" />
+
+    @if (Model.Any())
+    {
+        <div class="row mt-4 article-grid" id="recommend-container">
+            @Html.Partial("_PartialRecommend", @Model)
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <button id="load-more-btn" data-page="1" class="btn btn-load-more">
+                    <span class="text-add-meal">コラムをもっと見る</span>
+                </button>
+            </div>
+        </div>
+    }
+</div>
+
+<!--render chart-->
+@section Scripts {
+    <script src="~/js/recommend-page.js" asp-append-version="true"></script>
+}

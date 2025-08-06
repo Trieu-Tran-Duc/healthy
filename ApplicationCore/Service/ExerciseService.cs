@@ -7,7 +7,7 @@ namespace ApplicationCore.Service;
 
 public interface IExerciseService
 {
-    Task InsertExercisesForUser(InsertExercisesForUserDto requestxercises);
+    Task InsertDailyExercisePlansForUsers(InsertExercisesForUserDto requestxercises);
     Task<List<GetExercisesByUserModel>> GetExercisesByUserId(int userId, DateTime exerciseDate);
     Task UpdateExercisesStatusUserById(UpdateExercisesForUserDto requestxercises);
     Task<(double exerciseRate, string exerciseDate)> GetExerciseCompletionPercentageByUserId(int userId);
@@ -92,18 +92,27 @@ public class ExerciseService : IExerciseService
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
-    public async Task InsertExercisesForUser(InsertExercisesForUserDto requestxercises)
+    public async Task InsertDailyExercisePlansForUsers(InsertExercisesForUserDto requestExercises)
     {
-        var userExists = await _dbContext.Users.FirstOrDefaultAsync(u => u.MailAddress == requestxercises.MailAddress);
+        var userExists = await _dbContext.Users.FirstOrDefaultAsync(u => u.MailAddress == requestExercises.MailAddress);
 
         if (userExists == null)
         {
-            throw new ArgumentException($"User with mail address {requestxercises.MailAddress} does not exist.");
+            throw new ArgumentException($"User with mail address {requestExercises.MailAddress} does not exist.");
         }
 
-        var exercises = GenerateDefaultExercises(userExists.Id, requestxercises.TotalExercises);
+        var exercises = new Exercise
+        {
+            UserId = userExists.Id,
+            ExerciseDate = requestExercises.ExerciseDate,
+            Name = requestExercises.Name,
+            DurationMinutes = requestExercises.DurationMinutes,
+            Calories = requestExercises.Calories,
+            Description = requestExercises.Description,
+            IsCompleted = false,
+        };
 
-        _dbContext.Exercise.AddRange(exercises);
+        _dbContext.Exercise.Add(exercises);
         await _dbContext.SaveChangesAsync();
     }
 
@@ -128,61 +137,5 @@ public class ExerciseService : IExerciseService
 
         _dbContext.Exercise.Update(currentExerciseUser);
         await _dbContext.SaveChangesAsync();
-    }
-
-    /// <summary>
-    /// Automatically generated data exercise of user.
-    /// </summary>
-    /// <param name="userId"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    private List<Exercise> GenerateDefaultExercises(int userId, int totalExercises)
-    {
-        var random = new Random();
-        var exerciseList = new List<Exercise>();
-
-        // Define a list of exercise templates with names and descriptions.
-        var exerciseTemplates = new List<(string Name, string Description)>
-        {
-            ("軽い散歩", "公園で朝または夜にリラックスして歩く。"),
-            ("ジョギング", "心肺機能を向上させるために定期的に走る。"),
-            ("自転車", "近所を自転車で走ったり、エアロバイクで運動する。"),
-            ("水泳", "自由に泳いだり、ラウンドで全身を鍛える。")
-        };
-
-        for (int i = 0; i < totalExercises; i++)
-        {
-            var template = exerciseTemplates[random.Next(exerciseTemplates.Count)];
-
-            exerciseList.Add(new Exercise
-            {
-                UserId = userId,
-                ExerciseDate = GetRandomDate(random, DateTime.Now),
-                Name = template.Name,
-                DurationMinutes = random.Next(20, 45),
-                Calories = random.Next(50, 200),
-                Description = template.Description,
-                IsCompleted = false,
-                CreatedUserId = userId,
-            });
-        }
-
-        return exerciseList;
-    }
-
-    /// <summary>
-    /// randomize date for exercise.
-    /// </summary>
-    /// <param name="date"></param>
-    /// <returns></returns>
-    private DateTime GetRandomDate(Random random, DateTime date)
-    {
-        var isMorning = random.Next(2) == 0;
-
-        int hour = isMorning ? random.Next(5, 8) : random.Next(17, 20);
-        int minute = random.Next(0, 60);
-        int second = random.Next(0, 60);
-
-       return new DateTime(date.Year, date.Month, date.Day, hour, minute, second);
     }
 }

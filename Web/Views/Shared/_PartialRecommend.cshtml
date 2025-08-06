@@ -1,0 +1,22 @@
+﻿@model List<Infrastructure.Models.Web.RecommendModel>
+
+@foreach (var item in Model)
+{
+    var imgeSrc = Url.Content($"~/images/recommend/{item.ImageUrl}");
+    var tagHtml = string.Join("", item.HashTag.Select(t => $"<span>#{t}</span>"));
+
+    <div class="col-md-3 mb-4">
+        <div class="article-box">
+            <div class="card card-image">
+                <img src="@imgeSrc" class="card-img-top" />
+                <div class="card-label">
+                    <span class="timestamp">@item.RecommendDate</span>
+                </div>
+            </div>
+            <div class="title">@item.Content</div>
+            <div class="tags">
+                @Html.Raw(tagHtml)
+            </div>
+        </div>
+    </div>
+}

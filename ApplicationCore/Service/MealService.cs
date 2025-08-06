@@ -9,7 +9,7 @@ namespace ApplicationCore.Service;
 public interface IMealService
 {
     Task<List<FoodHistoryModel>> GetMealsByUserId(int userId, int pageSize, int pageIndex, MealType? mealType);
-    Task GenerateMeals(string email);
+    Task GenerateMeals(string email, DateTime dateTime);
 }
 
 /// <summary>
@@ -38,7 +38,7 @@ public class MealService : IMealService
     /// <param name="userId"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task GenerateMeals(string email)
+    public async Task GenerateMeals(string email, DateTime dateTime)
     {
         var checkUser = await _dbContext.Users.AsNoTracking()
             .FirstOrDefaultAsync(u => u.MailAddress == email && u.DeletedAt == null);
@@ -57,7 +57,7 @@ public class MealService : IMealService
             {
                 UserId = checkUser.Id,
                 FoodId = food.Id,
-                MealDate = DateTime.UtcNow,
+                MealDate = dateTime,
                 MealType = mealType,
                 CreatedUserId = checkUser.Id
             };
@@ -65,10 +65,14 @@ public class MealService : IMealService
            await _dbContext.Meal.AddAsync(meal);
         }
 
-        // Save all meals to the database
         await _dbContext.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// randomly get a food item based on the meal type.
+    /// </summary>
+    /// <param name="mealType"></param>
+    /// <returns></returns>
     private async Task<Food?> GetRandomFood(MealType mealType)
     {
        return await _dbContext.Food

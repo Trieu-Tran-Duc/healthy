@@ -5,12 +5,12 @@
         var page = parseInt(button.data('page')) + 1;
 
         $.ajax({
-            url: '/challenge/load-more-diary',
+            url: '/recommend/load-more-recommend',
             type: 'GET',
             data: { pageIndex: page },
             success: function (result) {
                 if (result.trim() !== '') {
-                    $('#diaries-container').append(result);
+                    $('#recommend-container').append(result);
                     button.data('page', page);
                 } else {
                     button.hide();

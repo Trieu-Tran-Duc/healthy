@@ -119,12 +119,12 @@
 <!--render chart-->
 @section Scripts {
     <script src="~/js/challenge-page.js" asp-append-version="true"></script>
-    
+
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/chart/chart.min.js"></script>
 
     <script>
-        window.chartDataUrl = '@Url.Action("GetChartData", "Home")';
+        window.chartDataUrl = '@Url.Action("get-chart-data", "home")';
     </script>
 
     <script src="~/js/chart-body-weight.js" asp-append-version="true"></script> 

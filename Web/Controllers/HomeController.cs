@@ -6,6 +6,7 @@ using Web.Models;
 
 namespace Web.Controllers;
 
+[Route("home")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -29,6 +30,7 @@ public class HomeController : Controller
         _mealService = mealService;
     }
 
+    [HttpGet("")]
     public async Task<IActionResult> Index()
     {
         try
@@ -54,7 +56,7 @@ public class HomeController : Controller
         }
     }
 
-    [HttpGet]
+    [HttpGet("get-chart-data")]
     public IActionResult GetChartData()
     {
         var labels = new[] { "6月", "7月", "8月", "9月", "10月", "11月", "12月", "1月", "2月", "3月", "4月", "5月" };
@@ -64,7 +66,7 @@ public class HomeController : Controller
         return Json(new { labels, line1, line2 });
     }
 
-    [HttpGet]
+    [HttpGet("load-more-meal-history")]
     public async Task<IActionResult> LoadMoreMealHistory(int pageIndex, MealType? mealType)
     {
         try

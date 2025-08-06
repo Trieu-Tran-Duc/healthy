@@ -5,6 +5,7 @@ using Web.Models;
 
 namespace Web.Controllers
 {
+    [Route("challenge")]
     public class ChallengeController : Controller
     {
         private readonly IAccessSessionHelper _accessSessionHelper;
@@ -28,6 +29,7 @@ namespace Web.Controllers
             _logger = logger;
         }
 
+        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             try
@@ -53,7 +55,7 @@ namespace Web.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("load-more-diary")]
         public async Task<IActionResult> LoadMoreDiary(int pageIndex)
         {
             try

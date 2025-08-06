@@ -46,7 +46,7 @@ public class LoginController : Controller
             context?.Session.Clear();
             await SetAsync(context.Session, nameof(GetUserModelDto), userContext);
 
-            return Json(new { success = true, redirectUrl = Url.Action("Index", "Home") });
+            return Json(new { success = true, redirectUrl = Url.Action("Index", "home") });
         }
         catch (Exception e)
         {
