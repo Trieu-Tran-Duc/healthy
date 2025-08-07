@@ -30,7 +30,7 @@ public class BodyRecordsService : IBodyRecordsService
     /// <exception cref="NotImplementedException"></exception>
     public async Task InsertOrUpdateBodyRecordForUser(InsertBodyRecordForUserDto requestRecord)
     {
-        var userExists = await _dbContext.Users.FirstOrDefaultAsync(u => u.MailAddress == requestRecord.MailAddress);
+        var userExists = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.MailAddress == requestRecord.MailAddress);
 
         if (userExists == null)
         {

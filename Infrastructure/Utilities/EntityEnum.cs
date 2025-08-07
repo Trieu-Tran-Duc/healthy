@@ -13,3 +13,15 @@ public enum MealType
     [Description("Snack")]
     Snack
 }
+
+public enum TimeMetrics
+{
+    [Description("日")]
+    Daily,
+    [Description("週")]
+    Week,
+    [Description("月")]
+    Month,
+    [Description("年")]
+    Year
+}

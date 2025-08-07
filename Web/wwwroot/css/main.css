@@ -514,6 +514,10 @@ header {
   color: var(--c-light);
   background-color: var(--c-primary-300);
 }
+.section-chart .btn-filter-chart.btn-active {
+  color: var(--c-light) !important;
+  background-color: var(--c-primary-300) !important;
+}
 
 .diary-component {
   width: 960px;

@@ -14,6 +14,9 @@ public static class AddDependencyInjectionServices
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IMealService, MealService>();
         services.AddScoped<IRecommendService, RecommendService>();
+        services.AddScoped<IBodyMetricsService, BodyMetricsService>();
+
+        //temporary data service will be used to dummy data for testing purposes
         services.AddScoped<ITemporaryDataService, TemporaryDataService>();
 
         services.AddScoped<IAccessSessionHelper, AccessSessionHelper>();

@@ -1,21 +1,22 @@
 ﻿$(document).ready(function () {
+
     $.getJSON(window.chartDataUrl, function (data) {
         new Chart(document.getElementById('body-weight-chart'), {
             type: 'line',
             data: {
-                labels: data.labels,
+                labels: data.timeLine,
                 datasets: [
                     {
-                        label: 'Line 1',
-                        data: data.line1,
+                        label: '重さ',
+                        data: data.weight,
                         borderColor: '#4dd0e1',
                         backgroundColor: 'transparent',
                         borderWidth: 2,
                         tension: 0.3
                     },
                     {
-                        label: 'Line 2',
-                        data: data.line2,
+                        label: '体',
+                        data: data.body,
                         borderColor: '#fdd835',
                         backgroundColor: 'transparent',
                         borderWidth: 2,
@@ -48,4 +49,5 @@
             }
         });
     });
+
 });

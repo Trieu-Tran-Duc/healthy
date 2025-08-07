@@ -55,7 +55,7 @@ public class DiaryService : IDiaryService
     /// <exception cref="ArgumentException"></exception>
     public async Task InsertDiaryForUser(InsertDiaryForUserDto diaryRequest)
     {
-        var userExists = await _dbContext.Users.FirstOrDefaultAsync(u => u.MailAddress == diaryRequest.MailAddress);
+        var userExists = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.MailAddress == diaryRequest.MailAddress);
 
         if (userExists == null)
         {

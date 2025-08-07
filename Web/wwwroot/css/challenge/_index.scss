@@ -194,6 +194,11 @@
             color: $c-light;
             background-color: $c-primary-300;
         }
+
+        &.btn-active {
+            color: $c-light !important;
+            background-color: $c-primary-300 !important;
+        }
     }
 }
 

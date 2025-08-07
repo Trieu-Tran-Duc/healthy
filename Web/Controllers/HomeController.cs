@@ -13,6 +13,7 @@ public class HomeController : Controller
     private readonly IAccessSessionHelper _accessSessionHelper;
     private readonly IExerciseService _exerciseService;
     private readonly IMealService _mealService;
+    private readonly IBodyMetricsService _bodyMetrics;
 
     private const int PAGE_SIZE = 8;
 
@@ -21,13 +22,15 @@ public class HomeController : Controller
         ILogger<HomeController> logger, 
         IAccessSessionHelper accessSessionHelper,
         IExerciseService exerciseService,
-        IMealService mealService
+        IMealService mealService,
+        IBodyMetricsService bodyMetrics
     )
     {
         _logger = logger;
         _accessSessionHelper = accessSessionHelper;
         _exerciseService = exerciseService;
         _mealService = mealService;
+        _bodyMetrics = bodyMetrics;
     }
 
     [HttpGet("")]
@@ -57,13 +60,20 @@ public class HomeController : Controller
     }
 
     [HttpGet("get-chart-data")]
-    public IActionResult GetChartData()
+    public async Task<IActionResult> GetChartData()
     {
-        var labels = new[] { "6月", "7月", "8月", "9月", "10月", "11月", "12月", "1月", "2月", "3月", "4月", "5月" };
-        var line1 = new[] { 90, 88, 75, 77, 65, 65, 55, 50, 47, 40, 38, 35 };
-        var line2 = new[] { 91, 89, 70, 75, 72, 60, 68, 60, 55, 53, 52, 55 };
+        try
+        {
+            var sessionUser = await _accessSessionHelper.GetUserContextAsync();
+            var bodyMetrics = await _bodyMetrics.GetBodyMetricsAsync(sessionUser.UserId, TimeMetrics.Month);
 
-        return Json(new { labels, line1, line2 });
+            return Json(new { bodyMetrics.TimeLine, bodyMetrics.Weight, bodyMetrics.Body });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Get chart data failed");
+            throw;
+        }
     }
 
     [HttpGet("load-more-meal-history")]

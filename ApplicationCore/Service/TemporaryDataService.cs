@@ -50,14 +50,23 @@ public class TemporaryDataService : ITemporaryDataService
         {
             FirstName = "Trieu",
             LastName = "TD",
-            MailAddress = "dummy2@gmail.com",
+            MailAddress = "test@gmail.com",
             LoginPassword = "123",
         });
 
-        //seed exercise data for the user
-        for (DateTime date = DateTime.Now.AddDays(-7); date < DateTime.Now; date = date.AddDays(1))
+        
+        for (DateTime date = DateTime.Now.AddDays(-60); date < DateTime.Now; date = date.AddDays(1))
         {
-           await GenerateDefaultExercises(newUser.UserId, 5, date);
+            //seed exercise data for the user
+            await GenerateDefaultExercises(newUser.UserId, 5, date);
+
+            // Seed body records for the user
+            await _bodyRecordsService.InsertOrUpdateBodyRecordForUser(new InsertBodyRecordForUserDto()
+            {
+                MailAddress = newUser.MailAddress,
+                Weight = 70 + (date.Day % 5),
+                RecordDate = date,
+            });
         }
 
         // seed food data for the user

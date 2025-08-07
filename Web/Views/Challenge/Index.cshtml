@@ -44,10 +44,10 @@
             <canvas id="body-weight-chart" height="100"></canvas>
         </div>
         <div class="filter-buttons mb-3 d-flex gap-3">
-            <button class="btn btn-filter-chart">日</button>
-            <button class="btn btn-filter-chart">週</button>
-            <button class="btn btn-filter-chart">月</button>
-            <button class="btn btn-filter-chart">年</button>
+            <button type="button" class="btn btn-filter-chart" data-type="0">日</button>
+            <button type="button" class="btn btn-filter-chart" data-type="1">週</button>
+            <button type="button" class="btn btn-filter-chart btn-active" data-type="2">月</button>
+            <button type="button" class="btn btn-filter-chart" data-type="3">年</button>
         </div>
         <div class="col-3">
             <img src="~/images/icon/component_scroll.png" id="btn-on-top" class="btn-on-top" style="display: none;" />
@@ -122,10 +122,4 @@
 
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/chart/chart.min.js"></script>
-
-    <script>
-        window.chartDataUrl = '@Url.Action("get-chart-data", "home")';
-    </script>
-
-    <script src="~/js/chart-body-weight.js" asp-append-version="true"></script> 
 }
