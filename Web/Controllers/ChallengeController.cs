@@ -1,6 +1,5 @@
 ﻿using ApplicationCore.Helper;
 using ApplicationCore.Service;
-using Infrastructure.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 
@@ -12,7 +11,6 @@ namespace Web.Controllers
         private readonly IAccessSessionHelper _accessSessionHelper;
         private readonly IExerciseService _exerciseService;
         private readonly IDiaryService _diaryService;
-        private readonly IBodyMetricsService _bodyService;
         private readonly ILogger<HomeController> _logger;
 
         private const int PAGE_SIZE = 8;
@@ -22,14 +20,12 @@ namespace Web.Controllers
             IAccessSessionHelper accessSessionHelper, 
             IExerciseService exerciseService, 
             IDiaryService diaryService,
-            IBodyMetricsService bodyMetrics,
             ILogger<HomeController> logger
         )
         {
             _accessSessionHelper = accessSessionHelper;
             _exerciseService = exerciseService;
             _diaryService = diaryService;
-            _bodyService = bodyMetrics;
             _logger = logger;
         }
 
@@ -73,23 +69,6 @@ namespace Web.Controllers
                 }
 
                 return PartialView("_PartialDiary", diaries);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Load More Diary error: ");
-                throw;
-            }
-        }
-
-        [HttpGet("generation-chart")]
-        public async Task<IActionResult> GenerationChart([FromQuery] TimeMetrics timeMetrics)
-        {
-            try
-            {
-                var sessionUser = await _accessSessionHelper.GetUserContextAsync();
-                var bodyMetrics = await _bodyService.GetBodyMetricsAsync(sessionUser.UserId, timeMetrics);
-
-                return Json(new { bodyMetrics.TimeLine, bodyMetrics.Weight, bodyMetrics.Body });
             }
             catch (Exception e)
             {

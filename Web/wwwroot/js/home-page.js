@@ -36,4 +36,6 @@
         });
     }
 
+    //default to monthly for body chart
+    RenderBodyChart(2);
 });
