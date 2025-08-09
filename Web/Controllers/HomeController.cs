@@ -10,10 +10,12 @@ namespace Web.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+
     private readonly IAccessSessionHelper _accessSessionHelper;
+
     private readonly IExerciseService _exerciseService;
+
     private readonly IMealService _mealService;
-    private readonly IBodyMetricsService _bodyMetrics;
 
     private const int PAGE_SIZE = 8;
 
@@ -22,17 +24,19 @@ public class HomeController : Controller
         ILogger<HomeController> logger, 
         IAccessSessionHelper accessSessionHelper,
         IExerciseService exerciseService,
-        IMealService mealService,
-        IBodyMetricsService bodyMetrics
+        IMealService mealService
     )
     {
         _logger = logger;
         _accessSessionHelper = accessSessionHelper;
         _exerciseService = exerciseService;
         _mealService = mealService;
-        _bodyMetrics = bodyMetrics;
     }
 
+    /// <summary>
+    /// index page for home, it will show the exercise completion percentage and meal history.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("")]
     public async Task<IActionResult> Index()
     {
@@ -59,23 +63,12 @@ public class HomeController : Controller
         }
     }
 
-    [HttpGet("get-chart-data")]
-    public async Task<IActionResult> GetChartData()
-    {
-        try
-        {
-            var sessionUser = await _accessSessionHelper.GetUserContextAsync();
-            var bodyMetrics = await _bodyMetrics.GetBodyMetricsAsync(sessionUser.UserId, TimeMetrics.Month);
-
-            return Json(new { bodyMetrics.TimeLine, bodyMetrics.Weight, bodyMetrics.Body });
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Get chart data failed");
-            throw;
-        }
-    }
-
+    /// <summary>
+    /// load more meal history for the user.
+    /// </summary>
+    /// <param name="pageIndex"></param>
+    /// <param name="mealType"></param>
+    /// <returns></returns>
     [HttpGet("load-more-meal-history")]
     public async Task<IActionResult> LoadMoreMealHistory(int pageIndex, MealType? mealType)
     {

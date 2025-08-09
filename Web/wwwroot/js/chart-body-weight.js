@@ -1,4 +1,4 @@
-﻿let chart;
+﻿let lineChart;
 function createChart(ctx, data) {
     return new Chart(ctx, {
         type: 'line',
@@ -46,10 +46,10 @@ const RenderBodyChart = (type) => {
     $.getJSON(`/metrics/render-body-chart?timeMetrics=${type}`, function (data) {
         const ctx = document.getElementById('body-weight-chart').getContext('2d');
 
-        if (chart) {
-            chart.destroy();
+        if (lineChart) {
+            lineChart.destroy();
         }
 
-        chart = createChart(ctx, data);
+        lineChart = createChart(ctx, data);
     });
 };

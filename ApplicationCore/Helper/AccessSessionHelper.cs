@@ -51,5 +51,4 @@ public class AccessSessionHelper : IAccessSessionHelper
 
         return default;
     }
-
 }

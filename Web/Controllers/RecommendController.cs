@@ -7,7 +7,9 @@ namespace Web.Controllers
     public class RecommendController : Controller
     {
         private readonly ILogger<RecommendController> _logger;
+
         private readonly IRecommendService _recommendService;
+
         private const int PAGE_SIZE = 8;
 
         public RecommendController

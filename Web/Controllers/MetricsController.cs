@@ -9,7 +9,9 @@ namespace Web.Controllers
     public class MetricsController : Controller
     {
         private readonly IBodyMetricsService _bodyService;
+
         private readonly ILogger<HomeController> _logger;
+
         private readonly IAccessSessionHelper _accessSessionHelper;
         public MetricsController(IBodyMetricsService bodyService, ILogger<HomeController> logger, IAccessSessionHelper accessSessionHelper)
         {

@@ -9,8 +9,11 @@ namespace Web.Controllers
     public class ChallengeController : Controller
     {
         private readonly IAccessSessionHelper _accessSessionHelper;
+
         private readonly IExerciseService _exerciseService;
+
         private readonly IDiaryService _diaryService;
+
         private readonly ILogger<HomeController> _logger;
 
         private const int PAGE_SIZE = 8;
@@ -29,6 +32,10 @@ namespace Web.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// index page for challenge, it will show the current date, exercises and diaries.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
@@ -55,6 +62,11 @@ namespace Web.Controllers
             }
         }
 
+        /// <summary>
+        /// load more exercises for the user based on the current date.
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
         [HttpGet("load-more-diary")]
         public async Task<IActionResult> LoadMoreDiary(int pageIndex)
         {

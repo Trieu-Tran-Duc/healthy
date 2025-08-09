@@ -90,7 +90,7 @@ public class UserService : IUserService
         var userExists = await _healtyDbContext.Users.FirstOrDefaultAsync(u => u.MailAddress == registerUser.MailAddress);
         if (userExists != null)
         {
-            return null;
+            throw new ArgumentException($"User with Email {registerUser.MailAddress} already exists.");
         }
         
         var newUser = new User

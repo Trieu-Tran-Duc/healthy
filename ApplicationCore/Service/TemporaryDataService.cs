@@ -54,7 +54,11 @@ public class TemporaryDataService : ITemporaryDataService
             LoginPassword = "123",
         });
 
-        
+        if (newUser == null)
+        {
+            throw new ArgumentException($"User with Email {newUser?.MailAddress} already exists.");
+        }
+
         for (DateTime date = DateTime.Now.AddDays(-60); date < DateTime.Now; date = date.AddDays(1))
         {
             //seed exercise data for the user

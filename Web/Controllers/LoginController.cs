@@ -30,6 +30,12 @@ public class LoginController : Controller
         return View();
     }
 
+    /// <summary>
+    /// login action, it will check the user information and set the session.
+    /// </summary>
+    /// <param name="Email"></param>
+    /// <param name="Password"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<JsonResult> Login(string Email, string Password)
     {
@@ -56,6 +62,14 @@ public class LoginController : Controller
 
     }
 
+    /// <summary>
+    /// set user information to session
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="session"></param>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
     private static async Task SetAsync<T>(ISession session, string key, T value)
     {
         //https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/app-state?view=aspnetcore-2.2#session-state
