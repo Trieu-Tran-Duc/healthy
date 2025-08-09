@@ -82,6 +82,7 @@ public class ExerciseService : IExerciseService
                 Calories = e.Calories,
                 Description = e.Description,
                 ExerciseDate = e.ExerciseDate,
+                Status = e.IsCompleted ? "完了" : "未完成",
             })
             .OrderBy(e => e.Calories)
             .ToListAsync();
@@ -104,7 +105,7 @@ public class ExerciseService : IExerciseService
         var exercises = new Exercise
         {
             UserId = userExists.Id,
-            ExerciseDate = requestExercises.ExerciseDate,
+            ExerciseDate = DateTime.Parse(requestExercises.ExerciseDate),
             Name = requestExercises.Name,
             DurationMinutes = requestExercises.DurationMinutes,
             Calories = requestExercises.Calories,

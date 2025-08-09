@@ -103,6 +103,9 @@ header {
 .custom-header li {
   cursor: pointer;
 }
+.custom-header .btn-active .color-text-menu {
+  color: var(--c-primary-400) !important;
+}
 
 .sidebar {
   position: fixed;

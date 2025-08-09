@@ -13,7 +13,7 @@ public class InsertExercisesForUserDto
 
     [JsonPropertyName("exercise-date")]
     [ApiDateFormatAttribute]
-    public DateTime ExerciseDate { get; set; }
+    public string ExerciseDate { get; set; }
 
     [JsonPropertyName("exercise-name")]
     [ApiRequired]

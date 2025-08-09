@@ -1,8 +1,12 @@
 ﻿@model List<Infrastructure.Models.Web.FoodHistoryModel>
 
+@{
+    var isSingleImage = Model.Count == 1;
+}
+
 @foreach (var entry in Model)
 {
-    <div class="col-6 col-md-3">
+    <div class="@(isSingleImage ? "col-12" : "col-6 col-md-3")">
         <div class="card h-100">
             <img src="@entry.ImageUrl" class="card-img-top" />
             <div class="card-label">

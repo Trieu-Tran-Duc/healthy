@@ -12,7 +12,7 @@ public class InsertBodyRecordForUserDto
 
     [JsonPropertyName("record-date")]
     [ApiDateFormatAttribute]
-    public DateTime RecordDate { get; set; }
+    public string RecordDate { get; set; }
 
     [JsonPropertyName("weight")]
     public double Weight { get; set; }

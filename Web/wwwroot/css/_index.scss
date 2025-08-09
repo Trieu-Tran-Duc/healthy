@@ -77,6 +77,10 @@ header {
     li {
         cursor: pointer
     }
+
+    .btn-active .color-text-menu {
+        color: $c-primary-400 !important;
+    }
 }
 
 .sidebar {
@@ -119,9 +123,10 @@ header {
                 background-color: $c-gray-400;
                 display: block;
             }
+
         }
     }
-    
+
     .icon-close {
         height: 20px;
     }

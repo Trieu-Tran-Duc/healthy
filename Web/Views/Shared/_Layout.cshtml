@@ -12,7 +12,9 @@
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
-
+@{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
 <body>
     <header>
         <nav class="navbar nav custom-header">
@@ -22,19 +24,19 @@
                 </a>
                 <div class="justify-content-center">
                     <ul class="navbar-nav d-flex flex-row gap-4">
-                        <li class="nav-item d-flex align-items-center">
+                        <li class="nav-item d-flex align-items-center @(currentController == "Home" ? "btn-active" : "")">
                             <a class="nav-link" asp-controller="home" asp-action="Index">
                                 <img src="~/images/icon/icon_memo.png" class="sub-logo" />
                                 <span class="color-text-menu">自分の記録</span>
                             </a>
                         </li>
-                        <li class="nav-item d-flex align-items-center">
+                        <li class="nav-item d-flex align-items-center @(currentController == "Challenge" ? "btn-active" : "")">
                             <a class="nav-link" asp-controller="challenge" asp-action="Index">
                                 <img src="~/images/icon/icon_challenge.png" class="sub-logo" />
                                 <span class="color-text-menu">チャレンジ</span>
                             </a>
                         </li>
-                        <li class="nav-item d-flex align-items-center">
+                        <li class="nav-item d-flex align-items-center @(currentController == "Recommend" ? "btn-active" : "")">
                             <a class="nav-link" asp-controller="recommend" asp-action="Index">
                                 <img src="~/images/icon/icon_info.png" class="sub-logo" />
                                 <span class="color-text-menu">お知らせ</span>

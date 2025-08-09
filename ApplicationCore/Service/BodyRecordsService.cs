@@ -36,9 +36,9 @@ public class BodyRecordsService : IBodyRecordsService
         {
             throw new ArgumentException($"User with mail address {requestRecord.MailAddress} does not exist.");
         }
-
+        var recordDate = DateTime.Parse(requestRecord.RecordDate);
         var existsBodyRecord = await _dbContext.BodyRecord
-            .FirstOrDefaultAsync(br => br.UserId == userExists.Id && br.RecordDate.Date == requestRecord.RecordDate.Date);
+            .FirstOrDefaultAsync(br => br.UserId == userExists.Id && br.RecordDate.Date == recordDate);
 
         //update existing record if it exists
         if (existsBodyRecord != null)
@@ -55,7 +55,7 @@ public class BodyRecordsService : IBodyRecordsService
         var bodyRecord = new BodyRecords
         {
             UserId = userExists.Id,
-            RecordDate = requestRecord.RecordDate,
+            RecordDate = recordDate,
             Weight = requestRecord.Weight,
             CreatedUserId = userExists.Id,
         };
