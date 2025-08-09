@@ -12,8 +12,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//dotnet ef migrations add InitialCreate --project Infrastructure  --startup-project Api
-//dotnet ef database update --project Infrastructure --startup-project Api 20250803170909_updateTableFood
 builder.Services.AddDbContext<HealtyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
